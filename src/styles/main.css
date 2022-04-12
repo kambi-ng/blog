@@ -1,5 +1,29 @@
 @tailwind base;
-
 @tailwind components;
 
 @tailwind utilities;
+
+html {
+  @apply text-gray-100;
+  /* @apply bg-black-500; */
+}
+
+.container{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
+}
+
+.hamburger__line{
+  width: 3rem;
+  height: 0.25rem;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  margin: 0.25rem;
+  border-radius: 5px;
+}
+
+.hero{
+  height: 60vh;
+  max-height: 600px;
+}

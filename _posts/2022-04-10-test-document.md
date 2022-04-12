@@ -4,6 +4,7 @@ description: 'Test document to see all markdown functionality and its style'
 date: '2022-04-10'
 modified_date: '2022-04-10'
 image: /assets/images/posts/random-img.jpg
+author: Ghibranalj
 ---
 
 **Note:** This document is itself written using Markdown.

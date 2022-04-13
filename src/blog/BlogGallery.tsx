@@ -20,25 +20,31 @@ const BlogGallery = (props: IBlogGalleryProps) => {
             return (
               <div key={elt.slug} className="mb-3 ">
                 <Link href="/posts/[slug]" as={`/posts/${elt.slug}`}>
-                  <a className="grid grid-cols-6 gap-x-4 space-y-4 md:flex md:flex-col md:justify-between">
+                  <a className="grid grid-cols-6 gap-x-7 md:space-y-4 md:flex md:flex-col h-full">
                     <img
                       src={elt.image}
                       alt={`${elt.title} image`}
-                      className="w-full h-56 object-none col-span-3"
+                      className="w-full h-36 md:h-56 object-none col-span-3"
                     />
-                    <div className="flex flex-col md:block col-span-3">
-                      <h2 className="font-medium font-subheader text-3xl md:text-3xl grow md:grow-0">
-                        {elt.title}
-                      </h2>
-                      <p
-                        className="hidden md:block font-body  text-base font-normal mt-1"
-                        style={{ minHeight: '1.125rem' }}
-                      >
-                        {elt.description}
-                      </p>
+                    <div className="flex flex-col justify-between col-span-3 h-full">
+                      <div className="">
+                        <h2 className="font-medium font-subheader text-xl md:text-3xl grow md:grow-0">
+                          {elt.title}
+                        </h2>
+                        <p
+                          className="hidden md:block font-body  text-base font-normal mt-1"
+                          style={{ minHeight: '1.125rem' }}
+                        >
+                          {elt.description}
+                        </p>
+                      </div>
                       <div className="flex flex-col md:flex-row justify-between mt-2">
-                        <span className="">By {elt.author || 'Anonymous'}</span>
-                        <div>{format(new Date(elt.date), 'd LLL yyyy')}</div>
+                        <span className="text-sm">
+                          By {elt.author || 'Anonymous'}
+                        </span>
+                        <div className="text-sm">
+                          {format(new Date(elt.date), 'd LLL yyyy')}
+                        </div>
                       </div>
                     </div>
                   </a>

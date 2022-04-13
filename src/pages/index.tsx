@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GetStaticProps } from 'next';
 
-import { IBlogGalleryProps } from '../blog/BlogGallery';
+import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import Hero from '../hero/Hero';
 import { Meta } from '../layout/Meta';
 import { IPaginationProps } from '../pagination/Pagination';
@@ -13,12 +13,20 @@ import { getAllPosts } from '../utils/Content';
 const Index = (props: IBlogGalleryProps) => (
   <Main meta={<Meta title="Home" description={AppConfig.description} />}>
     <Hero />
-    {/* <BlogGallery posts={props.posts} pagination={props.pagination} /> */}
+
+    <BlogGallery posts={props.posts} pagination={props.pagination} />
   </Main>
 );
 
 export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
-  const posts = getAllPosts(['title', 'date', 'slug', 'image', 'description']);
+  const posts = getAllPosts([
+    'title',
+    'date',
+    'slug',
+    'image',
+    'description',
+    'author',
+  ]);
   const pagination: IPaginationProps = {};
 
   if (posts.length > AppConfig.pagination_size) {

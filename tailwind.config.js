@@ -20,7 +20,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        bleach: '#ffffff',
         primary: {
+          50: '#C9C7EC',
           100: '#9B95EA',
           200: '#807ACC',
           300: '#6D68B4',

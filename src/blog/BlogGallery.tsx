@@ -11,32 +11,52 @@ export type IBlogGalleryProps = {
   pagination: IPaginationProps;
 };
 
-const BlogGallery = (props: IBlogGalleryProps) => (
-  <>
-    <div className="grid grid-cols-3 gap-8">
-      {props.posts.map((elt) => {
-        return (
-          <div key={elt.slug} className="mb-3 flex flex-col justify-between">
-            <Link href="/posts/[slug]" as={`/posts/${elt.slug}`}>
-              <a className="shadow-lg rounded-lg space-y-2 ">
-                <img src={elt.image} className="rounded-t-lg" />
-                <div className="px-4 py-6 space-y-1">
-                  <h2 className="font-bold">{elt.title}</h2>
-                  <div>{format(new Date(elt.date), 'd LLL yyyy')}</div>
-                  <p>{elt.description}</p>
-                </div>
-              </a>
-            </Link>
-          </div>
-        );
-      })}
-    </div>
+const BlogGallery = (props: IBlogGalleryProps) => {
+  return (
+    <section className="bg-black-300 py-16">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {props.posts.map((elt) => {
+            return (
+              <div key={elt.slug} className="mb-3 ">
+                <Link href="/posts/[slug]" as={`/posts/${elt.slug}`}>
+                  <a className="grid grid-cols-6 gap-x-4 space-y-4 md:flex md:flex-col md:justify-between">
+                    <img
+                      src={elt.image}
+                      alt={`${elt.title} image`}
+                      className="w-full h-56 object-none col-span-3"
+                    />
+                    <div className="flex flex-col md:block col-span-3">
+                      <h2 className="font-medium font-subheader text-3xl md:text-3xl grow md:grow-0">
+                        {elt.title}
+                      </h2>
+                      <p
+                        className="hidden md:block font-body  text-base font-normal mt-1"
+                        style={{ minHeight: '1.125rem' }}
+                      >
+                        {elt.description}
+                      </p>
+                      <div className="flex flex-col md:flex-row justify-between mt-2">
+                        <span className="">By {elt.author || 'Anonymous'}</span>
+                        <div>{format(new Date(elt.date), 'd LLL yyyy')}</div>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
 
-    <Pagination
-      previous={props.pagination.previous}
-      next={props.pagination.next}
-    />
-  </>
-);
+        <div className="mt-4">
+          <Pagination
+            previous={props.pagination.previous}
+            next={props.pagination.next}
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export { BlogGallery };

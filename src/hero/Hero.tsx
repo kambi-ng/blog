@@ -3,12 +3,12 @@ import React from 'react';
 import Link from 'next/link';
 
 // import { GetStaticProps } from 'next';
-import Batik from '../assets/BatikMotive.tsx';
+import Batik from '../assets/BatikMotive';
 
 const Hero = () => (
   <div className="hero bg-tertiary-200 text-black-200 h-3/5 truncate relative">
     <div className="container h-full grid gap-3 grid-cols-6 grid-rows-1 md:grid-cols-12">
-      <aside className="h-full flex flex-col justify-center col-span-5 md:col-span-6">
+      <aside className="h-full flex flex-col justify-center col-span-5 whitespace-normal">
         <h1 className="text-6xl md:text-8xl font-header font-bold">
           goat shit.
         </h1>
@@ -22,7 +22,7 @@ const Hero = () => (
         </Link>
       </aside>
     </div>
-    <div className=" batik opacity-10 absolute bottom-0 right-20 -rotate-45 -translate-x-52 translate-y-60">
+    <div className=" batik opacity-10 absolute bottom-64 -right-64 md:bottom-36 md:-right-56 xl:bottom-0 xl:right-12 -rotate-45 -translate-x-52 translate-y-60">
       <Batik />
     </div>
   </div>

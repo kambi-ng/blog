@@ -76,6 +76,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
     'image',
     'content',
     'slug',
+    'author',
   ]);
   const content = await markdownToHtml(post.content || '');
 

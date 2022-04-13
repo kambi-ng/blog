@@ -9,7 +9,7 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => (
-  <div className="antialiased w-full h-full min-h-screen">
+  <div className="antialiased w-full h-full min-h-screen flex flex-col">
     {props.meta}
     <Navbar />
     <main>{props.children}</main>

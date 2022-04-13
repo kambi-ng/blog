@@ -3,10 +3,10 @@ import React from 'react';
 import Link from 'next/link';
 
 const Navbar = () => (
-  <nav className="bg-black-600 h-28">
+  <nav className="bg-black-600 h-28 sticky top-0 z-50">
     <div className="container flex items-center justify-between h-full">
       <Link href="/" passHref>
-        <span className="font-header text-4xl font-semibold">Kambing</span>
+        <a className="font-header text-4xl font-semibold">Kambing</a>
       </Link>
       <div className="hidden md:block w-auto">
         <ul className="flex justify-between basis-32 space-x-8">

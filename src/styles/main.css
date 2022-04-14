@@ -39,3 +39,12 @@ html {
 }
 
 
+::-webkit-scrollbar-track {
+  background: red;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: blue;
+  
+}

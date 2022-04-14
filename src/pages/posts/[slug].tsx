@@ -20,7 +20,7 @@ type IPostProps = {
   modified_date: string;
   image: string;
   content: string;
-  author: string;
+  author?: string;
 };
 
 const DisplayPost = (props: IPostProps) => {
@@ -45,13 +45,13 @@ const DisplayPost = (props: IPostProps) => {
             alt={`${props.title}'s Image`}
             className="w-full h-96 object-cover"
           />
-          <h1 className="md:text-center font-semibold  mt-8 font-header text-5xl">
+          <h1 className="md:text-center font-semibold  mt-8 font-header text-5xl capitalize">
             {props.title}
           </h1>
-          <div className="text-xl font-thin md:text-center w-full mt-2 text-gray-100/80">
+          <div className="text-xl font-light md:text-center w-full mt-2 text-gray-100">
             By {props.author || 'Anonymous'}
           </div>
-          <div className="md:text-center font-ligh text-base  mb-8 mt-2 text-gray-100/80">
+          <div className="md:text-center font-light text-base  mb-8 mt-2 text-gray-100">
             {format(new Date(props.date), 'LLLL d, yyyy')}
           </div>
 
@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
       date: post.date,
       modified_date: post.modified_date,
       image: post.image,
-      author: post.author,
+      author: post.author || 'Anonymous',
       content,
     },
   };

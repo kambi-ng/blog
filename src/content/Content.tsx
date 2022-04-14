@@ -61,7 +61,7 @@ const Content = (props: IContentProps) => {
           }
 
           .content :global(blockquote) {
-            @apply border-l pl-4 text-gray-100/80;
+            @apply border-l pl-4 text-gray-200/80 border-gray-600;
           }
 
           .content :global(pre) {
@@ -71,6 +71,7 @@ const Content = (props: IContentProps) => {
           .content :global(pre) {
             @apply !bg-black-400 !p-4 !rounded-md;
           }
+
            {
             /* Code without pre is in main.css for now i have a headache */
           }

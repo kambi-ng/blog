@@ -4,7 +4,7 @@ module.exports = {
     fontFamily: {
       header: ['Montserrat', 'sans-serif'],
       subheader: ['Lora', 'serif'],
-      body: ['Hind Madurai', 'sans-serif'],
+      body: ['Arima Madurai', 'sans-serif'],
     },
     fontSize: {
       xs: '0.75rem',

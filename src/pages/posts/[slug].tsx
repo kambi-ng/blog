@@ -20,37 +20,52 @@ type IPostProps = {
   modified_date: string;
   image: string;
   content: string;
+  author: string;
 };
 
-const DisplayPost = (props: IPostProps) => (
-  <Main
-    meta={
-      <Meta
-        title={props.title}
-        description={props.description}
-        post={{
-          image: props.image,
-          date: props.date,
-          modified_date: props.modified_date,
-        }}
-      />
-    }
-  >
-    <h1 className="text-center font-bold text-3xl text-gray-900">
-      {props.title}
-    </h1>
-    <div className="text-center text-sm mb-8">
-      {format(new Date(props.date), 'LLLL d, yyyy')}
-    </div>
+const DisplayPost = (props: IPostProps) => {
+  return (
+    <Main
+      meta={
+        <Meta
+          title={props.title}
+          description={props.description}
+          post={{
+            image: props.image,
+            date: props.date,
+            modified_date: props.modified_date,
+          }}
+        />
+      }
+    >
+      <div className="container grid grid-cols-6 md:grid-cols-12 py-16">
+        <article className="col-span-6 md:col-start-2 md:col-end-12 lg:col-start-4 lg:col-end-10">
+          <img
+            src={props.image}
+            alt={`${props.title}'s Image`}
+            className="w-full h-96 object-cover"
+          />
+          <h1 className="md:text-center font-semibold  mt-8 font-header text-5xl">
+            {props.title}
+          </h1>
+          <div className="text-xl font-thin md:text-center w-full mt-2 text-gray-100/80">
+            By {props.author || 'Anonymous'}
+          </div>
+          <div className="md:text-center font-ligh text-base  mb-8 mt-2 text-gray-100/80">
+            {format(new Date(props.date), 'LLLL d, yyyy')}
+          </div>
 
-    <Content>
-      <div
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: props.content }}
-      />
-    </Content>
-  </Main>
-);
+          <Content>
+            <div
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: props.content }}
+            />
+          </Content>
+        </article>
+      </div>
+    </Main>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths<IPostUrl> = async () => {
   const posts = getAllPosts(['slug']);
@@ -87,6 +102,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
       date: post.date,
       modified_date: post.modified_date,
       image: post.image,
+      author: post.author,
       content,
     },
   };

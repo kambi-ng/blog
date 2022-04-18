@@ -16,7 +16,8 @@ html {
 .container{
   padding-left: 1rem;
   padding-right: 1rem;
-  margin: 0 auto;
+  margin-left:  auto;
+  margin-right: auto;
 }
 
 .hamburger__line{
@@ -39,12 +40,3 @@ html {
 }
 
 
-::-webkit-scrollbar-track {
-  background: red;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: blue;
-  
-}

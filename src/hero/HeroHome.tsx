@@ -9,7 +9,7 @@ const Hero = () => (
   <div className="hero bg-tertiary-200 text-black-200 h-3/5 truncate relative">
     <div className="container h-full grid gap-3 grid-cols-6 grid-rows-1 md:grid-cols-12">
       <aside className="h-full flex flex-col justify-center col-span-5 whitespace-normal">
-        <h1 className="text-6xl md:text-8xl font-header font-bold">
+        <h1 className="text-6xl lg:text-6xl xl:text-8xl font-header font-bold">
           goat shit.
         </h1>
         <p className="text-2xl md:text-3xl font-subheader italic font-medium text-secondary-200 mt-4">

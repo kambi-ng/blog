@@ -3,7 +3,7 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
-import Hero from '../hero/Hero';
+import Hero from '../hero/HeroHome';
 import { Meta } from '../layout/Meta';
 import { IPaginationProps } from '../pagination/Pagination';
 import { Main } from '../templates/Main';

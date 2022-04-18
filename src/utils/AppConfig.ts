@@ -2,8 +2,8 @@ export const AppConfig = {
   site_name: 'Kambing',
   title: 'Kambing',
   description: 'Blog Kambing',
-  url: 'https://example.com',
+  url: 'https://kambing.net',
   locale: 'en',
-  author: 'Anonymous',
+  author: 'Kambing Org',
   pagination_size: 6,
 };

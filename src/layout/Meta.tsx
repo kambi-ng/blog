@@ -10,15 +10,28 @@ type IMetaProps = {
   title: string;
   description: string;
   canonical?: string;
-  post?: {
-    image: string;
-    date: string;
-    modified_date: string;
-  };
+  type?: string;
+  image?: string;
+  date?: string;
+  modified_date?: string;
+  author?: string;
 };
 
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
+  let host: string;
+  if (typeof window !== 'undefined') {
+    host = window.location.host;
+  } else host = router.basePath;
+
+  let modifiedDate = '';
+  if (props.modified_date) {
+    modifiedDate = `${props.modified_date}`;
+  }
+  let date = '';
+  if (props.date) {
+    date = `${props.date}`;
+  }
 
   return (
     <>
@@ -55,57 +68,31 @@ const Meta = (props: IMetaProps) => {
         />
         <title>{`${props.title} | ${AppConfig.site_name}`}</title>
         <meta
-          name="description"
-          content={
-            props.description ? props.description : AppConfig.description
-          }
-          key="description"
+          property="og:description"
+          content={props.description}
+          key="desc"
         />
-        <meta name="author" content={AppConfig.author} key="author" />
-        {props.canonical && (
-          <link rel="canonical" href={props.canonical} key="canonical" />
-        )}
+
+        <meta name="description" content={props.description} key="desc" />
+        <meta property="og:image" content={host + props.image} />
+        <meta property="og:site_name" content={AppConfig.site_name} />
         <meta
           property="og:title"
           content={`${props.title} | ${AppConfig.site_name}`}
-          key="og:title"
         />
-        <meta
-          property="og:description"
-          content={
-            props.description ? props.description : AppConfig.description
-          }
-          key="og:description"
-        />
-        <meta property="og:locale" content={AppConfig.locale} key="og:locale" />
-        <meta
-          property="og:site_name"
-          content={AppConfig.site_name}
-          key="og:site_name"
-        />
-        {props.post && (
+        <meta property="og:type" content={props.type} />
+        {props.type === 'article' && (
           <>
-            <meta property="og:type" content="article" key="og:type" />
-            <meta
-              property="og:image"
-              content={`${AppConfig.url}${router.basePath}${props.post.image}`}
-              key="og:image"
-            />
-            <meta
-              name="twitter:card"
-              content="summary_large_image"
-              key="twitter:card"
-            />
             <meta
               property="article:published_time"
-              content={new Date(props.post.date).toISOString()}
-              key="article:published_time"
+              content={new Date(date).toISOString()}
             />
             <meta
               property="article:modified_time"
-              content={new Date(props.post.modified_date).toISOString()}
-              key="article:modified_time"
+              content={new Date(modifiedDate).toISOString()}
             />
+            <meta property="article:author" content={props.author} />
+
             <script
               type="application/ld+json"
               // eslint-disable-next-line react/no-danger
@@ -134,11 +121,9 @@ const Meta = (props: IMetaProps) => {
               "name": "${AppConfig.author}"
             },
             "headline": "${props.title} | ${AppConfig.site_name}",
-            "image": ["${AppConfig.url}${router.basePath}${props.post.image}"],
-            "datePublished": "${new Date(props.post.date).toISOString()}",
-            "dateModified": "${new Date(
-              props.post.modified_date
-            ).toISOString()}",
+            "image": ["${AppConfig.url}${router.basePath}${props.image}"],
+            "datePublished": "${new Date(date).toISOString()}",
+            "dateModified": "${new Date(modifiedDate).toISOString()}",
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": "${AppConfig.url}${router.basePath}${addTrailingSlash(

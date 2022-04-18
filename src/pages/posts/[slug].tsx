@@ -30,11 +30,11 @@ const DisplayPost = (props: IPostProps) => {
         <Meta
           title={props.title}
           description={props.description}
-          post={{
-            image: props.image,
-            date: props.date,
-            modified_date: props.modified_date,
-          }}
+          image={props.image}
+          date={props.date}
+          modified_date={props.modified_date}
+          type="article"
+          author={props.author}
         />
       }
     >

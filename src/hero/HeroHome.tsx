@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 // import { GetStaticProps } from 'next';
-import Batik from '../assets/BatikMotive';
+import Batik from '../assets/Batik-Motive.svg';
 
 const Hero = () => (
   <div className="hero bg-tertiary-200 text-black-200 h-3/5 truncate relative">
@@ -22,9 +22,7 @@ const Hero = () => (
         </Link>
       </aside>
     </div>
-    <div className=" batik opacity-10 absolute bottom-64 -right-64 md:bottom-36 md:-right-56 xl:bottom-0 xl:right-12 -rotate-45 -translate-x-52 translate-y-60">
-      <Batik />
-    </div>
+    <Batik className=" scale-[200%] opacity-10 absolute bottom-72 -right-[26rem] md:bottom-36 md:-right-64 xl:bottom-0 xl:-right-26 -rotate-45 -translate-x-52 translate-y-60" />
   </div>
 );
 

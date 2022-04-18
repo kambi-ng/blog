@@ -6,7 +6,7 @@ import Link from 'next/link';
 //   isMinimal: boolean;
 // };
 
-import GithubIcon from '../assets/Github-Icon';
+import GithubIcon from '../assets/Github-Icon.svg';
 
 const Footer = () => {
   return (

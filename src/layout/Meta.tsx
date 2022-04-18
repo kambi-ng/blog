@@ -67,13 +67,12 @@ const Meta = (props: IMetaProps) => {
           key="favicon"
         />
         <title>{`${props.title} | ${AppConfig.site_name}`}</title>
-        <meta
-          property="og:description"
-          content={props.description}
-          key="desc"
-        />
+        <meta property="twitter:card" content="summary_large_image" />
 
-        <meta name="description" content={props.description} key="desc" />
+        <meta name="description" content={props.description} />
+
+        {/* OPENGRAPH */}
+        <meta property="og:description" content={props.description} />
         <meta property="og:image" content={host + props.image} />
         <meta property="og:site_name" content={AppConfig.site_name} />
         <meta
@@ -81,6 +80,12 @@ const Meta = (props: IMetaProps) => {
           content={`${props.title} | ${AppConfig.site_name}`}
         />
         <meta property="og:type" content={props.type} />
+
+        {/* TWITTER */}
+        <meta name="twitter:title" content={props.title} />
+        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:image" content={props.image} />
+
         {props.type === 'article' && (
           <>
             <meta

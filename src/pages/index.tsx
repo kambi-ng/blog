@@ -10,15 +10,23 @@ import { Main } from '../templates/Main';
 import { AppConfig } from '../utils/AppConfig';
 import { getAllPosts } from '../utils/Content';
 
-const Index = (props: IBlogGalleryProps) => (
-  <Main meta={<Meta title="Home" description={AppConfig.description} />}>
-    <Hero />
+type IIndexProps = {
+  postSlugs: string[];
+  gallery: IBlogGalleryProps;
+};
 
-    <BlogGallery posts={props.posts} pagination={props.pagination} />
+const Index = (props: IIndexProps) => (
+  <Main meta={<Meta title="Home" description={AppConfig.description} />}>
+    <Hero postSlugs={props.postSlugs} />
+
+    <BlogGallery
+      posts={props.gallery.posts}
+      pagination={props.gallery.pagination}
+    />
   </Main>
 );
 
-export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
+export const getStaticProps: GetStaticProps<IIndexProps> = async () => {
   const posts = getAllPosts([
     'title',
     'date',
@@ -27,16 +35,27 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
     'description',
     'author',
   ]);
+
+  const postSlugs: string[] = [];
+
+  posts.forEach((post) => {
+    postSlugs.push(post.slug);
+  });
+
   const pagination: IPaginationProps = {};
 
   if (posts.length > AppConfig.pagination_size) {
     pagination.next = '/page2';
   }
 
+  const gallery: IBlogGalleryProps = {
+    posts: posts.slice(0, AppConfig.pagination_size),
+    pagination,
+  };
   return {
     props: {
-      posts: posts.slice(0, AppConfig.pagination_size),
-      pagination,
+      postSlugs,
+      gallery,
     },
   };
 };

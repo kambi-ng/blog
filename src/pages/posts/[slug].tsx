@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
       title: post.title,
       description: post.description,
       date: post.date,
-      modified_date: post.modified_date,
+      modified_date: post.modified_date || post.date,
       image: post.image,
       author: post.author || 'Anonymous',
       content,

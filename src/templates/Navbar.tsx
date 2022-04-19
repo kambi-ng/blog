@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const router = useRouter();
 
+  const { pathname } = router;
   useEffect(() => {}, [toggle]);
   return (
     <>
@@ -15,12 +18,18 @@ const Navbar = () => {
           </Link>
           <div className="hidden md:block w-auto">
             <ul className="flex flex-col md:flex-row justify-between basis-32 md:space-x-8">
-              <li className="text-xl">
+              <li
+                className={`text-xl ${pathname === '/' ? 'text-gray-700' : ''}`}
+              >
                 <Link href="/" passHref>
                   Home
                 </Link>
               </li>
-              <li className="text-xl">
+              <li
+                className={`text-xl ${
+                  pathname === '/about' ? 'text-gray-700' : ''
+                }`}
+              >
                 <Link href="/about" passHref>
                   About Us
                 </Link>
@@ -50,18 +59,23 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
       <div
-        className={`md:hidden fixed top-0 left-0  w-full h-full z-20 transition-all duration-300 ease-in-out ${
+        className={`md:hidden fixed top-0 left-0  w-[100vw] h-[100vh] z-30 transition-all duration-300 ease-in-out bg-black-400/90 backdrop-blur-md ${
           toggle ? 'translate-x-0' : '-translate-y-full'
         }`}
       >
-        <ul className="grid place-content-center w-full h-full text-center bg-black-400 opacity-95 gap-8 backdrop-blur-3xl">
-          <li className="text-2xl" onClick={() => setToggle(false)}>
+        <ul className="grid place-content-center w-[100vw] h-[100vh] text-center   gap-8 ">
+          <li className={`text-2xl ${pathname === '/' ? 'text-gray-700' : ''}`}>
             <Link href="/" passHref>
               Home
             </Link>
           </li>
-          <li className="text-2xl" onClick={() => setToggle(false)}>
+          <li
+            className={`text-2xl ${
+              pathname === '/about' ? 'text-gray-700' : ''
+            }`}
+          >
             <Link href="/about" passHref>
               About Us
             </Link>

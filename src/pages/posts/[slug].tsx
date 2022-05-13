@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { format } from 'date-fns';
+import hljs from 'highlight.js';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Content } from '../../content/Content';
@@ -24,6 +25,10 @@ type IPostProps = {
 };
 
 const DisplayPost = (props: IPostProps) => {
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
   return (
     <Main
       meta={
@@ -93,7 +98,8 @@ export const getStaticProps: GetStaticProps<IPostProps, IPostUrl> = async ({
     'slug',
     'author',
   ]);
-  const content = await markdownToHtml(post.content || '');
+  const contentPlain = markdownToHtml(post.content || '');
+  const content = contentPlain;
 
   return {
     props: {

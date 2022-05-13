@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'prismjs/themes/prism-tomorrow.min.css';
+import 'highlight.js/styles/base16/material.css';
 
 type IContentProps = {
   children: ReactNode;
@@ -68,12 +66,16 @@ const Content = (props: IContentProps) => {
             overflow: auto;
           }
 
-          .content :global(pre) {
-            @apply !bg-black-400 !p-4 !rounded-md;
+          .content :global(pre) :global(code) {
+            @apply p-6 rounded-md !bg-black-400;
           }
 
-           {
-            /* Code without pre is in main.css for now i have a headache */
+          .content :global(img) {
+            @apply rounded-md;
+          }
+
+          .content :global(iframe) {
+            @apply w-full aspect-video my-2 rounded-md;
           }
         `}
       </style>

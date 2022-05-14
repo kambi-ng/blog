@@ -17,7 +17,11 @@ const Content = (props: IContentProps) => {
           }
 
           .content :global(p) {
-            @apply mb-6 font-body font-normal leading-7;
+            @apply font-body font-normal leading-7;
+          }
+
+          .content :global(p) + :global(p) {
+            @apply mt-4;
           }
 
           .content :global(ul) {
@@ -34,10 +38,6 @@ const Content = (props: IContentProps) => {
           .content :global(h4),
           .content :global(h5) {
             @apply font-subheader font-medium italic mt-4 mb-2;
-
-             {
-              /* @apply border-b border-gray-800; */
-            }
           }
 
           .content :global(h2) {
@@ -66,7 +66,7 @@ const Content = (props: IContentProps) => {
             overflow: auto;
           }
 
-          .content :global(pre) :global(code) {
+          .content :global(pre) {
             @apply p-6 rounded-md !bg-black-400;
           }
 

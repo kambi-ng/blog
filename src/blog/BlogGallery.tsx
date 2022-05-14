@@ -24,7 +24,7 @@ const BlogGallery = (props: IBlogGalleryProps) => {
                     <img
                       src={elt.image}
                       alt={`${elt.title} image`}
-                      className="w-full h-36 md:h-56 object-none col-span-3"
+                      className="w-full h-36 md:h-56 object-cover col-span-3"
                     />
                     <div className="flex flex-col justify-between col-span-3 h-full">
                       <div className="">

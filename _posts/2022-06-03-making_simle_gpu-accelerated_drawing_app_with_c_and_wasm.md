@@ -110,7 +110,7 @@ int main(){
 
 Second, we need to create a game loop. A game loop is a loop that runs in the background, and is constantly updating, and drawing our app.
   
-```C
+```c
 ....
 while(!WindowShouldClose()) {
   // code here
@@ -123,7 +123,7 @@ In this app, The user drags and draw rectangles of different colors.
 
 So we need a struct to store the rectangles and the color.
 
-```C
+```c
 typedef struct myRectangle{
   Rectangle rec;
   Color col;
@@ -133,7 +133,7 @@ Then we need a array of these. We also need to store how many rectangles we have
 
 We also need to store the current selected color, by default lets make it black.
 
-```C
+```c
 #define MAX_RECTANGLES 255
 
 typedef struct myRectangle{
@@ -147,8 +147,9 @@ int main(){
     // Initialization
     ....
 
-    myRectangle rects[255];
+    myRectangle rects[MAX_RECTANGLES];
     int count = 0;
+    col = BLACK;
 
     while(!WindowShouldClose()) {
       // code here
@@ -228,11 +229,15 @@ typedef struct myRectangle{
 Color col;
 
 int main(){
-    // Initialization
-    ....
+    const int screenWidth = 800;
+    const int screenHeight = 450;
 
-    myRectangle rects[255];
+    InitWindow(screenWidth, screenHeight, "Drawing app");
+
+    myRectangle rects[MAX_RECTANGLES];
     int count = 0;
+
+    col = BLACK;
 
     ClearBackground(RAYWHITE);
 
@@ -263,3 +268,6 @@ int main(){
     }
     EndDrawing();
 }
+```
+
+## Changing Color

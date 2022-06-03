@@ -67,7 +67,7 @@ const Content = (props: IContentProps) => {
           }
 
           .content :global(pre) {
-            @apply p-6 rounded-md !bg-black-400;
+            @apply p-6 rounded-md !bg-black-400 my-3;
           }
 
           .content :global(img) {

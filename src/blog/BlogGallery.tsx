@@ -43,7 +43,9 @@ const BlogGallery = (props: IBlogGalleryProps) => {
                           By {elt.author || 'Anonymous'}
                         </span>
                         <div className="text-sm">
-                          {format(new Date(elt.date), 'd LLL yyyy')}
+                          {elt.date
+                            ? format(new Date(elt.date), 'd LLL yyyy')
+                            : 'Unknown Date'}
                         </div>
                       </div>
                     </div>

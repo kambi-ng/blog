@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GetStaticProps } from 'next';
 
-import Kambing from '../assets/Kambing.jpg';
+import Kambing from '../assets/KambingNew.jpg';
 import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery';
 import Hero from '../hero/HeroHome';
 import { Meta } from '../layout/Meta';

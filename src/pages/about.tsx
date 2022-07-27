@@ -1,6 +1,6 @@
 import React from 'react';
 
-import kambing from '../assets/Kambing.jpg';
+import kambing from '../assets/KambingNew.jpg';
 import Hero from '../hero/HeroAbout';
 import { Meta } from '../layout/Meta';
 import { Main } from '../templates/Main';
@@ -15,7 +15,6 @@ const About = () => (
           alt="Picture of a goat"
           className="col-span-12 lg:col-span-5 rounded-3xl drop-shadow kambing h-72 lg:h-full w-[85%] lg:w-full  object-cover mx-auto"
         />
-
         <div className="col-start-1 col-end-13 lg:col-start-7 flex flex-col justify-center relative text-center lg:text-left px-12 lg:p-0">
           <h2 className="font-subheader text-3xl md:text-4xl lg:text-5xl italic font-medium">
             We Are Kambing

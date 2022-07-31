@@ -35,7 +35,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="text-xl">
-                <a href="https://github.com/bukan-kambing">Github</a>
+                <a href="https://github.com/kambi-ng">Github</a>
               </li>
             </ul>
           </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="text-2xl" onClick={() => setToggle(false)}>
-            <a href="https://github.com/bukan-kambing">Github</a>
+            <a href="https://github.com/kambi-ng">Github</a>
           </li>
         </ul>
       </div>

@@ -6,19 +6,19 @@ image: "/assets/images/adding_monad_to_golang.png"
 author: mustafasegf
 ---
 
-I've code in rust and i enjoy the algebraic data type that rust have. There's no null, i don't need to try catch, there's syntax for early return. But as much as i love rust, it's a hard language to learn. You need to understand borrow checker use arc mutex to share database connection between async. Right now, there are not a lot of job out there that use rust. Especially for web development.
+I've coded in Rust and enjoy the algebraic data type that Rust has. There's no null, I don't need to try catch, and there's a syntax for early return. But as much as I love rust, it's a hard language to learn. You need to understand borrow checker use arc mutex to share database connection between async. Right now, there are not a lot of jobs out there that use rust. Especially for web development.
 
 ### Why don't use golang?
 
-Right now, golang jobs out there have increase a lot in devops space and also in web development space. Golagn is really simple, i bet it'll take you less than 1 week to get productive in it. Golang also use garbage collector and i don't need to think about borrow checker rule. **_But..._** golang don't have strong type system. It have null as a value, don't have algebraic data type and don't have option and result. This might look like i'm being petty but trust me. Debugging null pointer in golang is not fun if you have recursive data structure (taken from real life experience).
+Right now, golang jobs out there have increased a lot in the DevOps space and also in the web development space. Golang is simple, I bet it'll take you less than 1 week to get productive in it. Golang also uses garbage collector and I don't need to think about the borrow checker rule. **_But..._** golang doesn't have a strong type system. It has null as a value, doesn't have an algebraic data type, and doesn't have an option and result. This might look like I'm being petty but trust me. Debugging null pointer in golang is not fun if you have a recursive data structure (taken from real-life experience).
 
 ### Can't we make it better?
 
-Before go 1.18, this problem have a hard solution. Since golang don't have generic, we couldn't make a generic container that could accept any type. We could use `interface{}` or reflection, but we'll loose the strict type and incur runtime performance penalty.
+Before golang 1.18, this problem has a hard solution. Since golang doesn't have generic, we couldn't make a generic container that could accept any type. We could use `interface{}` or reflection, but we'll lose the strict type and incur a runtime performance penalty.
 
 But fear no more. In golang 1.18, they introduce generic. Horray 🎉. Now we could make a simple container that could accept generic type.
 
-### let's add option and result to golang
+### Let's add option and result to golang
 
 now, we could make a simple struct for the option like this
 
@@ -38,12 +38,11 @@ type Result[T any] struct {
     isErr bool
 }
 ```
-
-after that we just need to implement map, getter, unwrap, and constructor right? well... yeah but that's tedious and thankfully there's already a good golang package called [`samber/mo`](https://github.com/samber/mo) that already implement most of the stuff that we need.
+after that, we just need to implement map, getter, unwrap, and constructor right? well... yeah but that's tedious and thankfully there's already a good golang package called [`samber/mo`](https://github.com/samber/mo) that already implements most of the stuff that we need.
 
 Now let's try to make a simple http server.
 
-### example http server without monad
+### Http server example without monad
 
 ```go
 package main
@@ -128,11 +127,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-this is a basic golang http server that do migration on start and server post request and add it to database. As you can see, golang need to check on the error, and if it's error then we need to early return it. If we don't check the error, the value of `user` will be `nil`.
+this is a basic golang http server that does db migration and http post requests. As you can see, golang needs to check on the error, and if it's an error then we need to early return it. If we don't check the error, the value of `user` will be `nil`.
 
 now, let's try with result and option
 
-### example http server with monad
+### http server example with monad
 
 ```go
 package main
@@ -227,12 +226,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-at a first glance, this look much more clutered. The reason why becasuse golang right now doesn't have light weight anonymous function declaration. There's an [ongoing proposal](https://github.com/golang/go/issues/21498) for it. But it looks like it won't be approved anytime soon.
+At first glance, this looks much more cluttered. The reason why is because golang right now doesn't have a lightweight anonymous function declaration. There's an [ongoing proposal](https://github.com/golang/go/issues/21498) for it. But it looks like it won't be approved anytime soon.
 
-Ignoring the extra mess that unnedded type in anonymous function give, this flow is much nicer than the non monad version. The `user` variable is parsed from json and it could error out. After that we want to validate it. Since we use option and `Map` function, the validation only run if user option is not empty. This way we don't need to error check if the decoding failed or not. Now, the reason why i check `if user.IsError()` is because i want to return with http.StatusBadRequest. On next iteration on this blog, we'll explore the idea of using Enum, or in mo package called Either. But for this demonstration, we will just error check it.
+Ignoring the extra mess that the unneeded type in the anonymous function gives, this flow is much nicer than the non-monad version. The `user` variable is parsed from json and it could error out. After that, we want to validate it. Since we use option and `Map` function, the validation only runs if user option is not empty. This way we don't need to error check if the decoding failed or not. Now, the reason why I check `if user.IsError()` is because I want to return with http.StatusBadRequest. In the next post on this blog, we'll explore the idea of using Enum, or in `samber/mo` package called Either. But for this demonstration, we will just error check it.
 
-At the end of the function, we just match if the user have error out or not. If it error out then we write the http response with `internal server error` and if it's successful then we write with success. This way we can code the happy path first and we deal with the error out later.
+At the end of the function, we just match if the user has an error out or not. If it errors out then we write the http response with `internal server error` and if it's successful then we write with success. This way we can code the happy path first and we deal with the error out later.
 
-### it's ugly but hey it have nicer flow
+### It's ugly but hey it have a nicer flow
 
-Of course this is much worst developer experience compared to rust where they have native support for this. It also look ugly compared to just error checking. But i would argue that this is a much nicer flow compared to checking `nil` and `err` every time.
+Of course, this is a much worst developer experience compared to Rust where they have native support for this. It also looks ugly compared to just error checking. But I would argue that this is a much nicer flow compared to checking `nil` and `err` every time.

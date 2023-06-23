@@ -20,7 +20,7 @@ But fear no more. In golang 1.18, they introduce generic. Horray 🎉. Now we co
 
 ### Let's add option and result to golang
 
-now, we could make a simple struct for the option like this
+Now, we could make a simple struct for the option like this
 
 ```go
 type Option[T any] struct {
@@ -29,7 +29,7 @@ type Option[T any] struct {
 }
 ```
 
-and we could make one for result like this
+And we could make one for result like this
 
 ```go
 type Result[T any] struct {
@@ -38,7 +38,7 @@ type Result[T any] struct {
     isErr bool
 }
 ```
-after that, we just need to implement map, getter, unwrap, and constructor right? well... yeah but that's tedious and thankfully there's already a good golang package called [`samber/mo`](https://github.com/samber/mo) that already implements most of the stuff that we need.
+After that, we just need to implement map, getter, unwrap, and constructor right? Well... yeah but that's tedious and thankfully there's already a good golang package called [`samber/mo`](https://github.com/samber/mo) that already implements most of the stuff that we need.
 
 Now let's try to make a simple http server.
 
@@ -127,9 +127,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-this is a basic golang http server that does db migration and http post requests. As you can see, golang needs to check on the error, and if it's an error then we need to early return it. If we don't check the error, the value of `user` will be `nil`.
+This is a basic golang http server that does db migration and http post requests. As you can see, golang needs to check on the error, and if it's an error then we need to early return it. If we don't check the error, the value of `user` will be `nil`.
 
-now, let's try with result and option
+
+Now, let's try with result and option
 
 ### http server example with monad
 
